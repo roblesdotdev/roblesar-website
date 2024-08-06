@@ -8,8 +8,9 @@ import {
 } from '@remix-run/react'
 import '~/styles/global.css'
 import { getMetaTags } from './utils/seo'
-import { getDomainUrl, getUrl } from './utils/misc'
+import { getDomainUrl } from './utils/http.server'
 import { json, type LoaderFunctionArgs } from '@vercel/remix'
+import { getUrl } from './utils/misc'
 
 export const meta: MetaFunction<typeof loader> = ({ data, error }) => {
   const requestInfo = data?.requestInfo

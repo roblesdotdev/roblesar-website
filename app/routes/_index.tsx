@@ -1,8 +1,13 @@
 import { useLoaderData } from '@remix-run/react'
-import { json } from '@vercel/remix'
+import { type HeadersFunction, json } from '@vercel/remix'
 import { GeneralErrorBoundary } from '~/components/error-boundary'
 import { type ProjectListing } from '~/types'
+import { CACHE_CONTROL } from '~/utils/http.server'
 import { getProjects } from '~/utils/projects.server'
+
+export const headers: HeadersFunction = () => ({
+  'Cache-Control': CACHE_CONTROL.DEFAULT,
+})
 
 export async function loader() {
   return json({

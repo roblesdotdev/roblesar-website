@@ -12,17 +12,10 @@ export function getErrorMessage(error: unknown) {
   return 'Unknown Error'
 }
 
-/**
- * @returns domain URL (without a ending slash, like: https://roblesar.com)
- */
-export function getDomainUrl(request: Request) {
-  const host =
-    request.headers.get('X-Forwarded-Host') ?? request.headers.get('host')
-  if (!host) {
-    throw new Error('Could not determine domain URL.')
-  }
-  const protocol = host.includes('localhost') ? 'http' : 'https'
-  return `${protocol}://${host}`
+export function typedBoolean<T>(
+  value: T,
+): value is Exclude<T, '' | 0 | false | null | undefined> {
+  return Boolean(value)
 }
 
 function removeTrailingSlash(s: string) {
@@ -37,10 +30,4 @@ export function getUrl(requestInfo?: { origin: string; path: string }) {
   return removeTrailingSlash(
     `${getOrigin(requestInfo)}${requestInfo?.path ?? ''}`,
   )
-}
-
-export function typedBoolean<T>(
-  value: T,
-): value is Exclude<T, '' | 0 | false | null | undefined> {
-  return Boolean(value)
 }
