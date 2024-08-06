@@ -1,21 +1,21 @@
-import type { MetaFunction } from "@remix-run/react";
+import type { MetaFunction } from '@remix-run/react'
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
-import "~/styles/global.css";
+} from '@remix-run/react'
+import '~/styles/global.css'
 
 export const meta: MetaFunction = () => [
-  { title: "Aldo R. Robles" },
+  { title: 'Aldo R. Robles' },
   {
-    name: "description",
+    name: 'description',
     content:
-      "Full-Stack Web Developer, React, Remix, Typescript, Node and more.",
+      'Full-Stack Web Developer, React, Remix, Typescript, Node and more.',
   },
-];
+]
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -32,9 +32,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
-  );
+  )
 }
 
 export default function App() {
-  return <Outlet />;
+  return <Outlet />
 }
