@@ -6,6 +6,15 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 installGlobals()
 
+const MODE = process.env.NODE_ENV
+
 export default defineConfig({
-  plugins: [remix({ presets: [vercelPreset()] }), tsconfigPaths()],
+  build: {
+    cssMinify: MODE === 'production',
+    sourcemap: true,
+  },
+  plugins: [
+    remix({ serverModuleFormat: 'esm', presets: [vercelPreset()] }),
+    tsconfigPaths(),
+  ],
 })
