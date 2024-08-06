@@ -34,7 +34,7 @@ export function GeneralErrorBoundary({
   }
 
   return (
-    <div className="container py-8">
+    <div className="container py-8 text-fg-error">
       {isRouteErrorResponse(error)
         ? (statusHandlers?.[error.status] ?? defaultStatusHandler)({
             error,
