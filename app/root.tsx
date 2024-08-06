@@ -1,21 +1,36 @@
-import type { MetaFunction } from '@remix-run/react'
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  type MetaFunction,
 } from '@remix-run/react'
 import '~/styles/global.css'
+import { getMetaTags } from './utils/seo'
+import { getDomainUrl, getUrl } from './utils/misc'
+import { json, type LoaderFunctionArgs } from '@vercel/remix'
 
-export const meta: MetaFunction = () => [
-  { title: 'Aldo R. Robles' },
-  {
-    name: 'description',
-    content:
-      'Full-Stack Web Developer, React, Remix, Typescript, Node and more.',
-  },
-]
+export const meta: MetaFunction<typeof loader> = ({ data, error }) => {
+  const requestInfo = data?.requestInfo
+  const title = error ? 'Error | Aldo R. Robles' : 'Aldo R. Robles'
+  return [
+    ...getMetaTags({
+      keywords: 'full-stack,react,typescript,developer',
+      url: getUrl(requestInfo),
+      title,
+    }),
+  ]
+}
+
+export function loader({ request }: LoaderFunctionArgs) {
+  return json({
+    requestInfo: {
+      origin: getDomainUrl(request),
+      path: new URL(request.url).pathname,
+    },
+  })
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

@@ -1,0 +1,8 @@
+{
+  // prefer @vercel/remix import
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "@remix-run/server-runtime",
+    "@remix-run/router",
+    "@remix-run/node"
+  ]
+}
