@@ -1,3 +1,4 @@
+import type { MetaFunction } from "@remix-run/react";
 import {
   Links,
   Meta,
@@ -5,7 +6,15 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import { Analytics } from "@vercel/analytics/react";
+
+export const meta: MetaFunction = () => [
+  { title: "Aldo R. Robles" },
+  {
+    name: "description",
+    content:
+      "Full-Stack Web Developer, React, Remix, Typescript, Node and more.",
+  },
+];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -20,7 +29,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
-        <Analytics />
       </body>
     </html>
   );
