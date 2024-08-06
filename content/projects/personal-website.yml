@@ -1,0 +1,15 @@
+title: Personal Website
+date: 2024-08-05
+summary: >-
+  Personal website created with Remix and deployed on Vercel, designed to
+  showcase my projects and personal notes.
+links:
+  source: https://github.com/roblesdotdev/roblesar-website#readme
+  website: https://roblesar.vercel.app
+tags:
+  - remix
+  - typescript
+  - vite
+  - tailwindcss
+  - markdown
+  - yaml
