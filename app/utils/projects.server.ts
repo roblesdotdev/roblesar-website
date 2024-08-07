@@ -1,22 +1,21 @@
 import yaml from 'yaml'
-import { typedBoolean } from './misc'
+import { invariant, typedBoolean } from './misc'
 import { type ProjectListing, type RawYAMLProject } from '~/types'
 
 const projectsContentsBySlug = Object.fromEntries(
   Object.entries(
-    import.meta.glob('../../content/projects/*.yml', {
+    import.meta.glob(`../../content/projects/*.yml`, {
       query: '?raw',
       import: 'default',
       eager: true,
     }),
   ).map(([filePath, contents]) => {
-    if (typeof contents !== 'string') {
-      throw new Error(
-        `Expected ${filePath} to be a string, but got ${typeof contents}`,
-      )
-    }
+    invariant(
+      typeof contents === 'string',
+      `Expected ${filePath} to be a string, but got ${typeof contents}`,
+    )
     return [
-      filePath.replace('../../content/projects/', '').replace(/\.yml$/, ''),
+      filePath.replace(`../../content/projects/`, '').replace(/\.yml$/, ''),
       contents,
     ]
   }),
