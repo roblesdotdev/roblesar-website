@@ -1,13 +1,10 @@
-import parseFrontMatter from 'front-matter'
-
 let processor: Awaited<ReturnType<typeof getProcessor>>
 
 export async function processMarkdown(content: string) {
   processor = processor || (await getProcessor())
-  const { attributes, body: raw } = parseFrontMatter(content)
-  const vfile = await processor.process(raw)
+  const vfile = await processor.process(content)
   const html = vfile.value.toString()
-  return { attributes, html }
+  return { html }
 }
 
 async function getProcessor() {

@@ -2,13 +2,14 @@ import { Link, type MetaFunction, useLoaderData } from '@remix-run/react'
 import { GeneralErrorBoundary } from '~/components/error-boundary'
 import { CACHE_CONTROL } from '~/utils/http.server'
 import { getUrl } from '~/utils/misc'
-import { getNoteBySlug } from '~/utils/notes.server'
 import { getMetaTags } from '~/utils/seo'
 import { type loader as rootLoader } from '~/root'
 import { json, type LoaderFunctionArgs } from '@vercel/remix'
+import { getNoteBySlug } from '~/utils/notes.server'
 
 export const meta: MetaFunction<typeof loader, { root: typeof rootLoader }> = ({
   data,
+  error,
   matches,
 }) => {
   const requestInfo = matches.find(m => m.id === 'root')?.data.requestInfo
@@ -16,7 +17,7 @@ export const meta: MetaFunction<typeof loader, { root: typeof rootLoader }> = ({
 
   return [
     ...getMetaTags({
-      title,
+      title: error ? 'Error | Aldo R. Robles' : title,
       description: summary,
       keywords: tags?.join(','),
       url: getUrl(requestInfo),

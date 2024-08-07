@@ -3,14 +3,14 @@ import { json } from '@vercel/remix'
 import { GeneralErrorBoundary } from '~/components/error-boundary'
 import { type NoteListing, type ProjectListing } from '~/types'
 import { CACHE_CONTROL } from '~/utils/http.server'
-import { getNotes } from '~/utils/notes.server'
+import { getNoteListing } from '~/utils/notes.server'
 import { getProjects } from '~/utils/projects.server'
 
 export async function loader() {
   return json(
     {
       projects: getProjects(),
-      notes: await getNotes(),
+      notes: getNoteListing(3),
     },
     {
       headers: {
@@ -30,7 +30,6 @@ export default function Index() {
       <div className="h-6" />
 
       <ProjectsSection projects={projects} />
-
       <div className="h-6" />
       <NotesSection notes={notes} />
     </div>

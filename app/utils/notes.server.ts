@@ -1,67 +1,76 @@
 import { DateTime } from 'luxon'
-import { z } from 'zod'
 import { processMarkdown } from './md.server'
-import { invariant, typedBoolean } from './misc'
-import { type MarkdownNote, type NoteListing } from '~/types'
+import {
+  type NoteListing,
+  type Frontmatter,
+  type MarkdownNote,
+  type Note,
+} from '~/types'
 import { LRUCache } from 'lru-cache'
+import { z } from 'zod'
 
-const FrontmatterSchema = z.object({
+const AttributesSchema = z.object({
   title: z.string().min(1),
   summary: z.string().min(1),
-  date: z.date(),
-  dateDisplay: z.string().default(''),
-  tags: z.array(z.string()),
+  date: z.string().min(1),
+  tags: z.array(z.string().min(1)),
   draft: z.boolean().optional().default(false),
 })
 
-const notesContentsBySlug = Object.fromEntries(
+type AttributesType = z.infer<typeof AttributesSchema>
+
+const noteContents = Object.fromEntries(
   Object.entries(
-    import.meta.glob('../../content/notes/*.md', {
-      query: '?raw',
-      import: 'default',
+    import.meta.glob<MarkdownNote<AttributesType>>('../../content/notes/*.md', {
       eager: true,
     }),
   ).map(([filePath, contents]) => {
-    invariant(
-      typeof contents === 'string',
-      `Expected ${filePath} to be a string, but got ${typeof contents}`,
-    )
+    const parsedAttrs = AttributesSchema.safeParse(contents.attributes)
+    if (!parsedAttrs.success)
+      throw new Error(`Invalid note attrs: ${parsedAttrs.error.message}`)
+
+    const result = { markdown: contents.markdown, attributes: parsedAttrs.data }
+
     return [
       filePath.replace('../../content/notes/', '').replace(/\.md$/, ''),
-      contents,
+      result,
     ]
   }),
 )
 
-const notesCache = new LRUCache<string, MarkdownNote>({
-  maxSize: 1024 * 1024 * 5, // 5 mb
-  sizeCalculation(value, key) {
-    return JSON.stringify(value).length + (key ? key.length : 0)
-  },
-})
+export function getNoteListing(limit?: number): NoteListing[] {
+  return Object.entries(noteContents)
+    .map(([key, contents]) => {
+      const date = new Date(contents.attributes.date)
+      return {
+        ...contents.attributes,
+        dateDisplay: formatDate(date),
+        slug: key,
+      }
+    })
+    .filter(listing => !listing.draft)
+    .sort((a, b) => (a.date > b.date ? -1 : 1))
+    .slice(0, limit)
+}
 
 export async function getNoteBySlug(
-  slug: string,
-): Promise<MarkdownNote | null> {
+  slug: Frontmatter['slug'],
+): Promise<Note | null> {
   const cached = notesCache.get(slug)
   if (cached) return cached
-  const rawNosteString = notesContentsBySlug[slug]
-  if (!rawNosteString) return null
-  const { attributes, html } = await processMarkdown(rawNosteString)
+  const content = noteContents[slug]
+  if (!content || content.attributes.draft) return null
 
-  const result = FrontmatterSchema.safeParse(attributes)
-  if (!result.success) {
-    console.log(result.error)
-    throw new Error('Invalid frontmatter')
-  }
-
-  const frontmatter = result.data
-  const date = frontmatter.date
-
-  if (frontmatter.draft) return null
+  const attributes = content.attributes
+  const { html } = await processMarkdown(content.markdown)
+  const date = new Date(attributes.date)
 
   const note = {
-    frontmatter: { ...frontmatter, dateDisplay: formatDate(date) },
+    frontmatter: {
+      ...attributes,
+      slug,
+      dateDisplay: formatDate(date),
+    },
     html,
   }
 
@@ -82,18 +91,9 @@ function formatDate(date: Date) {
   )
 }
 
-export async function getNotes(): Promise<Array<NoteListing>> {
-  const slugs = Object.keys(notesContentsBySlug)
-  const notes = (
-    await Promise.all(
-      slugs.map(async slug => {
-        const result = await getNoteBySlug(slug)
-        return result ? { slug, ...result.frontmatter } : null
-      }),
-    )
-  )
-    .filter(typedBoolean)
-    .sort((a, b) => (a.date > b.date ? -1 : 1))
-
-  return notes
-}
+const notesCache = new LRUCache<string, Note>({
+  maxSize: 1024 * 1024 * 6, // 6 mb
+  sizeCalculation(value, key) {
+    return JSON.stringify(value).length + (key ? key.length : 0)
+  },
+})
