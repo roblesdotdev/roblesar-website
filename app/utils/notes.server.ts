@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { processMarkdown } from './md.server'
 import { invariant, typedBoolean } from './misc'
 import { type MarkdownNote, type NoteListing } from '~/types'
+import { LRUCache } from 'lru-cache'
 
 const FrontmatterSchema = z.object({
   title: z.string().min(1),
@@ -32,9 +33,18 @@ const notesContentsBySlug = Object.fromEntries(
   }),
 )
 
+const notesCache = new LRUCache<string, MarkdownNote>({
+  maxSize: 1024 * 1024 * 5, // 5 mb
+  sizeCalculation(value, key) {
+    return JSON.stringify(value).length + (key ? key.length : 0)
+  },
+})
+
 export async function getNoteBySlug(
   slug: string,
 ): Promise<MarkdownNote | null> {
+  const cached = notesCache.get(slug)
+  if (cached) return cached
   const rawNosteString = notesContentsBySlug[slug]
   if (!rawNosteString) return null
   const { attributes, html } = await processMarkdown(rawNosteString)
@@ -54,6 +64,8 @@ export async function getNoteBySlug(
     frontmatter: { ...frontmatter, dateDisplay: formatDate(date) },
     html,
   }
+
+  notesCache.set(slug, note)
 
   return note
 }
@@ -79,7 +91,9 @@ export async function getNotes(): Promise<Array<NoteListing>> {
         return result ? { slug, ...result.frontmatter } : null
       }),
     )
-  ).filter(typedBoolean)
+  )
+    .filter(typedBoolean)
+    .sort((a, b) => (a.date > b.date ? -1 : 1))
 
   return notes
 }
