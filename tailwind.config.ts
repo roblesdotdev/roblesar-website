@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import typography from '@tailwindcss/typography'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
@@ -30,7 +31,25 @@ export default {
         },
         border: 'hsl(var(--border))',
       },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      typography: (theme: any) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-headings': theme('colors.fg.DEFAULT'),
+            '--tw-prose-body': theme('colors.fg.muted'),
+            '--tw-prose-links': theme('colors.fg.accent'),
+            '--tw-prose-bold': theme('colors.fg'),
+            '--tw-prose-counters': theme('colors.fg.muted'),
+            '--tw-prose-bullets': theme('colors.fg.muted'),
+            '--tw-prose-hr': theme('colors.border'),
+            '--tw-prose-quotes': theme('colors.fg'),
+            '--tw-prose-quote-borders': theme('colors.border[50]'),
+            '--tw-prose-code': theme('colors.fg.DEFAULT'),
+            '--tw-prose-pre-bg': theme('colors.panel'),
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [typography],
 } satisfies Config

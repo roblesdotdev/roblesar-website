@@ -6,6 +6,7 @@ import { getUrl } from '~/utils/misc'
 import { getNoteBySlug } from '~/utils/notes.server'
 import { getMetaTags } from '~/utils/seo'
 import { type loader as rootLoader } from '~/root'
+import { type HeadersFunction } from '@vercel/remix'
 
 export const meta: MetaFunction<typeof loader, { root: typeof rootLoader }> = ({
   data,
@@ -36,17 +37,14 @@ export async function loader({ params }: LoaderFunctionArgs) {
     throw new Response('Not found', { status: 404 })
   }
 
-  return json(
-    {
-      note,
-    },
-    {
-      headers: {
-        'Cache-Control': CACHE_CONTROL.DEFAULT,
-      },
-    },
-  )
+  return json({
+    note,
+  })
 }
+
+export const headers: HeadersFunction = () => ({
+  'Cache-Control': CACHE_CONTROL.DEFAULT,
+})
 
 export default function NoteRoute() {
   const { note } = useLoaderData<typeof loader>()
