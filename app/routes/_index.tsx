@@ -1,8 +1,9 @@
 import { useLoaderData } from '@remix-run/react'
 import { type HeadersFunction, json } from '@vercel/remix'
 import { GeneralErrorBoundary } from '~/components/error-boundary'
-import { type ProjectListing } from '~/types'
+import { type NoteListing, type ProjectListing } from '~/types'
 import { CACHE_CONTROL } from '~/utils/http.server'
+import { getNotes } from '~/utils/notes.server'
 import { getProjects } from '~/utils/projects.server'
 
 export const headers: HeadersFunction = () => ({
@@ -12,11 +13,12 @@ export const headers: HeadersFunction = () => ({
 export async function loader() {
   return json({
     projects: getProjects(),
+    notes: await getNotes(),
   })
 }
 
 export default function Index() {
-  const { projects } = useLoaderData<typeof loader>()
+  const { projects, notes } = useLoaderData<typeof loader>()
   return (
     <div className="container py-8">
       <h1 className="text-xl font-medium">Aldo R. Robles</h1>
@@ -24,9 +26,29 @@ export default function Index() {
 
       <div className="h-6" />
 
-      <div className="mt-8">
-        <ProjectsSection projects={projects} />
-      </div>
+      <ProjectsSection projects={projects} />
+
+      <div className="h-6" />
+      <NotesSection notes={notes} />
+    </div>
+  )
+}
+
+function NotesSection({ notes }: { notes: NoteListing[] }) {
+  return (
+    <div className="mt-8">
+      <h2 className="text-sm italic text-fg-muted">Personal Notes</h2>
+      <ul className="mt-8 grid grid-cols-1 gap-6">
+        {notes.map(note => (
+          <li key={note.slug} className="flex flex-col gap-1">
+            <time className="text-sm text-fg-muted" dateTime={note.dateDisplay}>
+              {note.dateDisplay}
+            </time>
+            <h1>{note.title}</h1>
+            <p className="text-sm text-fg-muted">{note.summary}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
