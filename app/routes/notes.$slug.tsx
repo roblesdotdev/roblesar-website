@@ -1,4 +1,3 @@
-import { json, type LoaderFunctionArgs } from '@remix-run/node'
 import { Link, type MetaFunction, useLoaderData } from '@remix-run/react'
 import { GeneralErrorBoundary } from '~/components/error-boundary'
 import { CACHE_CONTROL } from '~/utils/http.server'
@@ -6,7 +5,7 @@ import { getUrl } from '~/utils/misc'
 import { getNoteBySlug } from '~/utils/notes.server'
 import { getMetaTags } from '~/utils/seo'
 import { type loader as rootLoader } from '~/root'
-import { type HeadersFunction } from '@vercel/remix'
+import { json, type LoaderFunctionArgs } from '@vercel/remix'
 
 export const meta: MetaFunction<typeof loader, { root: typeof rootLoader }> = ({
   data,
@@ -37,14 +36,17 @@ export async function loader({ params }: LoaderFunctionArgs) {
     throw new Response('Not found', { status: 404 })
   }
 
-  return json({
-    note,
-  })
+  return json(
+    {
+      note,
+    },
+    {
+      headers: {
+        'Cache-Control': CACHE_CONTROL.DEFAULT,
+      },
+    },
+  )
 }
-
-export const headers: HeadersFunction = () => ({
-  'Cache-Control': CACHE_CONTROL.DEFAULT,
-})
 
 export default function NoteRoute() {
   const { note } = useLoaderData<typeof loader>()
