@@ -43,12 +43,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="relative">
         <header className="h-[60px] w-full">
           <nav className="container flex h-[inherit] items-center justify-between">
             <Link
               to="/"
-              className="flex size-8 items-center justify-center rounded-md border border-border/50 bg-panel outline-none ring-border transition-all focus-visible:ring-2"
+              className="flex size-8 items-center justify-center rounded-md border border-border/50 outline-none ring-border transition-all focus-visible:ring-2"
             >
               <span className="text-xl font-medium">r.</span>
             </Link>
