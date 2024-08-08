@@ -54,7 +54,6 @@ export function getNoteListing(limit?: number): Promise<NoteListing[]> {
 
   return Promise.all(
     entries.map(async listing => {
-      await new Promise(resolve => setTimeout(resolve, 2000))
       // Precache note by slug
       await getNoteBySlug(listing.slug)
       return listing
