@@ -52,7 +52,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 export default function NoteRoute() {
   const { note } = useLoaderData<typeof loader>()
   return (
-    <div className="container py-16">
+    <div className="container py-10">
       <div className="mb-6">
         <Link
           to=".."

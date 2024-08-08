@@ -1,4 +1,5 @@
 import {
+  Link,
   Links,
   Meta,
   Outlet,
@@ -43,6 +44,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <header className="h-[60px] w-full">
+          <nav className="container flex h-[inherit] items-center justify-between">
+            <Link
+              to="/"
+              className="flex size-8 items-center justify-center rounded-md border border-border/50 bg-panel outline-none ring-border transition-all focus-visible:ring-2"
+            >
+              <span className="text-xl font-medium">r.</span>
+            </Link>
+          </nav>
+        </header>
         {children}
         <ScrollRestoration />
         <Scripts />

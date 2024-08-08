@@ -20,7 +20,11 @@
   }
 
   * {
-    @apply border-border;
+    @apply border-border outline-none;
+  }
+
+  a:focus-visible {
+    @apply ring-2 ring-border;
   }
 
   html {
@@ -28,7 +32,7 @@
   }
 
   body {
-    @apply min-h-screen min-w-[var(--min-width)] overflow-x-hidden bg-canvas text-fg antialiased;
+    @apply min-h-screen min-w-[var(--min-width)] overflow-x-hidden bg-canvas leading-tight text-fg antialiased;
   }
 
   ::selection {

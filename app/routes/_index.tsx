@@ -23,14 +23,16 @@ export async function loader() {
 export default function Index() {
   const { projects, notes } = useLoaderData<typeof loader>()
   return (
-    <div className="container py-8">
+    <div className="container py-10">
       <h1 className="text-xl font-medium">Aldo R. Robles</h1>
-      <p className="text-fg-muted">Full-stack Web Developer</p>
+      <p className="italic text-fg-muted">Full-stack Web Developer</p>
 
       <div className="h-6" />
 
       <ProjectsSection projects={projects} />
+
       <div className="h-6" />
+
       <NotesSection notes={notes} />
     </div>
   )
@@ -40,21 +42,28 @@ function NotesSection({ notes }: { notes: NoteListing[] }) {
   return (
     <div className="mt-8">
       <h2 className="text-sm italic text-fg-muted">Personal Notes</h2>
-      <ul className="mt-8 grid grid-cols-1 gap-6">
+      <ul className="mt-8 flex flex-col gap-6">
         {notes.map(note => (
           <li key={note.slug} className="flex flex-col gap-1">
-            <time className="text-sm text-fg-muted" dateTime={note.dateDisplay}>
+            <time
+              className="text-sm italic text-fg-muted"
+              dateTime={note.dateDisplay}
+            >
               {note.dateDisplay}
             </time>
-            <Link to={`/notes/${note.slug}`} prefetch="intent">
+            <Link
+              to={`/notes/${note.slug}`}
+              prefetch="intent"
+              className="self-start"
+            >
               <h1>{note.title}</h1>
             </Link>
             <p className="text-sm text-fg-muted">{note.summary}</p>
-            <div className="py-2">
+            <div className="pt-3">
               <Link
                 to={`/notes/${note.slug}`}
                 prefetch="intent"
-                className="flex items-center gap-1 text-sm text-fg-muted"
+                className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-fg-accent"
               >
                 Read more
                 <span className="sr-only">{note.title}</span>
@@ -88,15 +97,36 @@ function ProjectsSection({ projects }: { projects: ProjectListing[] }) {
       {hasProjects ? (
         <ul className="mt-8 grid grid-cols-1 gap-6">
           {projects.map(project => (
-            <li key={project.slug} className="flex flex-col gap-1">
-              <h2 className="text-base font-medium">{project.title}</h2>
+            <li key={project.slug} className="space-y-1">
+              <a
+                href={`${project.links.website ?? project.links.source}`}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <h2 className="group inline-flex items-center gap-1 text-base font-medium">
+                  {project.title}
+                  <svg
+                    viewBox="0 0 15 15"
+                    className="hidden h-3 w-3 group-hover:inline"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 2C2.44772 2 2 2.44772 2 3V12C2 12.5523 2.44772 13 3 13H12C12.5523 13 13 12.5523 13 12V8.5C13 8.22386 12.7761 8 12.5 8C12.2239 8 12 8.22386 12 8.5V12H3V3L6.5 3C6.77614 3 7 2.77614 7 2.5C7 2.22386 6.77614 2 6.5 2H3ZM12.8536 2.14645C12.9015 2.19439 12.9377 2.24964 12.9621 2.30861C12.9861 2.36669 12.9996 2.4303 13 2.497L13 2.5V2.50049V5.5C13 5.77614 12.7761 6 12.5 6C12.2239 6 12 5.77614 12 5.5V3.70711L6.85355 8.85355C6.65829 9.04882 6.34171 9.04882 6.14645 8.85355C5.95118 8.65829 5.95118 8.34171 6.14645 8.14645L11.2929 3H9.5C9.22386 3 9 2.77614 9 2.5C9 2.22386 9.22386 2 9.5 2H12.4999H12.5C12.5678 2 12.6324 2.01349 12.6914 2.03794C12.7504 2.06234 12.8056 2.09851 12.8536 2.14645Z"
+                      fill="currentColor"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </h2>
+              </a>
               <p className="text-sm text-fg-muted">{project.summary}</p>
-              <ul className="mt-2 flex flex-wrap items-center gap-2">
+              <ul className="flex flex-wrap items-center gap-2 py-2">
                 {project.tags.map(tag => (
                   <Tag label={tag} key={tag} />
                 ))}
               </ul>
-              <div className="mt-3 flex items-center gap-4">
+              <div className="flex items-center gap-4 pt-3">
                 {Object.entries(project.links).map(([key, href]) => (
                   <ExternalLink key={key} href={href}>
                     {key}

@@ -1,6 +1,6 @@
 ---
 title: What I use
-summary: Some of the tools that I usually use
+summary: Some of the tools that I usually use.
 date: 2024-08-06
 tags:
   - tools

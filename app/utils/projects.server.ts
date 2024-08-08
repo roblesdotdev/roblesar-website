@@ -45,7 +45,7 @@ function getProject(slug: string): ProjectListing | null {
   } = rawProject
 
   // Ignore if not have title or date
-  if (!date || !title) return null
+  if (!date || !title || !links['source']) return null
 
   return {
     slug,
@@ -53,7 +53,10 @@ function getProject(slug: string): ProjectListing | null {
     title,
     summary,
     tags,
-    links,
+    links: {
+      ...links,
+      source: links.source,
+    },
     draft,
   }
 }

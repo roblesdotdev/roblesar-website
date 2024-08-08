@@ -13,7 +13,11 @@ export type ProjectListing = {
   summary: string
   date: string
   tags: Array<string>
-  links: Record<string, string>
+  links: {
+    source: string
+    website?: string
+    [key as string]: string
+  }
   draft?: boolean
 }
 
