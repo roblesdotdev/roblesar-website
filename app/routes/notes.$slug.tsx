@@ -55,7 +55,7 @@ export default function NoteRoute() {
     <div className="container py-10">
       <div className="mb-6">
         <Link
-          to=".."
+          to="/notes"
           replace
           className="inline-flex items-center gap-1 text-fg-muted"
         >
@@ -72,7 +72,7 @@ export default function NoteRoute() {
               clipRule="evenodd"
             ></path>
           </svg>
-          Back
+          All notes
         </Link>
       </div>
       <time

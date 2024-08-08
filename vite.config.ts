@@ -2,7 +2,6 @@ import { vitePlugin as remix } from '@remix-run/dev'
 import { installGlobals } from '@remix-run/node'
 import { defineConfig } from 'vite'
 import { vercelPreset } from '@vercel/remix/vite'
-import { plugin as markdown, Mode } from 'vite-plugin-markdown'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 installGlobals()
@@ -15,7 +14,6 @@ export default defineConfig({
     sourcemap: true,
   },
   plugins: [
-    markdown({ mode: [Mode.MARKDOWN] }),
     remix({ serverModuleFormat: 'esm', presets: [vercelPreset()] }),
     tsconfigPaths(),
   ],
