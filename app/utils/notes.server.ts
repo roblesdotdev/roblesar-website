@@ -6,7 +6,6 @@ import {
   type MarkdownNote,
   type Note,
 } from '~/types'
-import { LRUCache } from 'lru-cache'
 import { z } from 'zod'
 
 const AttributesSchema = z.object({
@@ -56,8 +55,6 @@ export function getNoteListing(limit?: number): NoteListing[] {
 export async function getNoteBySlug(
   slug: Frontmatter['slug'],
 ): Promise<Note | null> {
-  const cached = notesCache.get(slug)
-  if (cached) return cached
   const content = noteContents[slug]
   if (!content || content.attributes.draft) return null
 
@@ -74,8 +71,6 @@ export async function getNoteBySlug(
     html,
   }
 
-  notesCache.set(slug, note)
-
   return note
 }
 
@@ -90,10 +85,3 @@ function formatDate(date: Date) {
       })
   )
 }
-
-const notesCache = new LRUCache<string, Note>({
-  maxSize: 1024 * 1024 * 6, // 6 mb
-  sizeCalculation(value, key) {
-    return JSON.stringify(value).length + (key ? key.length : 0)
-  },
-})
