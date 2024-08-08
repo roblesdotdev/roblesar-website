@@ -7,6 +7,7 @@ import {
   type Note,
 } from '~/types'
 import { z } from 'zod'
+import { LRUCache } from 'lru-cache'
 
 const AttributesSchema = z.object({
   title: z.string().min(1),
@@ -41,6 +42,8 @@ export function getNoteListing(limit?: number): NoteListing[] {
   return Object.entries(noteContents)
     .map(([key, contents]) => {
       const date = new Date(contents.attributes.date)
+      // preprocess notes
+      getNoteBySlug(key)
       return {
         ...contents.attributes,
         dateDisplay: formatDate(date),
@@ -55,6 +58,8 @@ export function getNoteListing(limit?: number): NoteListing[] {
 export async function getNoteBySlug(
   slug: Frontmatter['slug'],
 ): Promise<Note | null> {
+  const cached = notesCache.get(slug)
+  if (cached) return cached
   const content = noteContents[slug]
   if (!content || content.attributes.draft) return null
 
@@ -71,6 +76,8 @@ export async function getNoteBySlug(
     html,
   }
 
+  notesCache.set(slug, note)
+
   return note
 }
 
@@ -85,3 +92,10 @@ function formatDate(date: Date) {
       })
   )
 }
+
+const notesCache = new LRUCache<string, Note>({
+  maxSize: 1024 * 1024 * 12, // 12 mb
+  sizeCalculation(value, key) {
+    return JSON.stringify(value).length + (key ? key.length : 0)
+  },
+})
