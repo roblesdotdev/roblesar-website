@@ -38,12 +38,10 @@ const noteContents = Object.fromEntries(
   }),
 )
 
-export function getNoteListing(limit?: number): NoteListing[] {
-  return Object.entries(noteContents)
+export function getNoteListing(limit?: number): Promise<NoteListing[]> {
+  const entries = Object.entries(noteContents)
     .map(([key, contents]) => {
       const date = new Date(contents.attributes.date)
-      // preprocess notes
-      getNoteBySlug(key)
       return {
         ...contents.attributes,
         dateDisplay: formatDate(date),
@@ -53,6 +51,15 @@ export function getNoteListing(limit?: number): NoteListing[] {
     .filter(listing => !listing.draft)
     .sort((a, b) => (a.date > b.date ? -1 : 1))
     .slice(0, limit)
+
+  return Promise.all(
+    entries.map(async listing => {
+      await new Promise(resolve => setTimeout(resolve, 2000))
+      // Precache note by slug
+      await getNoteBySlug(listing.slug)
+      return listing
+    }),
+  )
 }
 
 export async function getNoteBySlug(
