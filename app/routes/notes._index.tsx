@@ -1,12 +1,43 @@
 import { Await, Link, useLoaderData } from '@remix-run/react'
-import { defer } from '@vercel/remix'
+import { defer, type MetaFunction } from '@vercel/remix'
 import { Suspense } from 'react'
+import { CACHE_CONTROL } from '~/utils/http.server'
+import { getUrl } from '~/utils/misc'
 import { getNoteListing, type NoteListing } from '~/utils/notes.server'
+import { getMetaTags } from '~/utils/seo'
+import { type loader as rootLoader } from '~/root'
+import { GeneralErrorBoundary } from '~/components/error-boundary'
+
+export const meta: MetaFunction<typeof loader, { root: typeof rootLoader }> = ({
+  error,
+  matches,
+}) => {
+  const requestInfo = matches.find(m => m.id === 'root')?.data.requestInfo
+
+  return [
+    ...getMetaTags({
+      title: error
+        ? 'Error | Aldo R. Robles'
+        : 'Personal Notes | Aldo R. Robles',
+      description:
+        'Explore my personal notes. Code, resources, experiences and more.',
+      keywords: 'notes,posts',
+      url: getUrl(requestInfo),
+    }),
+  ]
+}
 
 export async function loader() {
-  return defer({
-    notes: getNoteListing(),
-  })
+  return defer(
+    {
+      notes: getNoteListing(),
+    },
+    {
+      headers: {
+        'Cache-Control': CACHE_CONTROL.DEFAULT,
+      },
+    },
+  )
 }
 
 export default function NotesRoute() {
@@ -80,4 +111,8 @@ function NotesFallback() {
       ))}
     </ul>
   )
+}
+
+export function ErrorBoundary() {
+  return <GeneralErrorBoundary />
 }
