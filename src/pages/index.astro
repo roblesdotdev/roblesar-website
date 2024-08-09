@@ -1,5 +1,8 @@
 ---
+import { getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
+
+const allNotes = await getCollection('notes')
 ---
 
 <Layout title="Aldo R. Robles">
@@ -10,8 +13,22 @@ import Layout from '../layouts/Layout.astro'
 
   <section class="mt-8">
     <h1 class="text-sm italic text-fg-muted">Personal notes</h1>
-    <ul>
-      <li>My note</li>
-    </ul>
+    <div class="mt-6">
+      <ul>
+        {
+          allNotes.map(note => (
+            <li>
+              <h1>{note.data.title}</h1>
+              <p class="text-sm text-fg-muted">{note.data.summary}</p>
+              <div class="mt-4">
+                <a href={`/notes/${note.slug}`} data-astro-prefetch>
+                  Read more <span class="sr-only">about {note.data.title}</span>
+                </a>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </section>
 </Layout>
