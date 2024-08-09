@@ -14,7 +14,23 @@ const notesCollection = defineCollection({
     }),
 })
 
+const projectsCollection = defineCollection({
+  type: 'data',
+  schema: () =>
+    z.object({
+      title: z.string(),
+      date: z.date(),
+      summary: z.string(),
+      links: z.object({
+        source: z.string().min(1),
+        website: z.string().optional(),
+      }),
+      tags: z.array(z.string()),
+    }),
+})
+
 // This key should match your collection directory name in "src/content"
 export const collections = {
-  note: notesCollection,
+  notes: notesCollection,
+  projects: projectsCollection,
 }

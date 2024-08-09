@@ -3,32 +3,70 @@ import { getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
 
 const allNotes = await getCollection('notes')
+const allProjects = await getCollection('projects')
 ---
 
 <Layout title="Aldo R. Robles">
   <div>
     <h1>Aldo Robles</h1>
     <p class="text-sm italic text-fg-muted">Full-stack Developer</p>
-  </div>
 
-  <section class="mt-8">
-    <h1 class="text-sm italic text-fg-muted">Personal notes</h1>
-    <div class="mt-6">
-      <ul>
-        {
-          allNotes.map(note => (
-            <li>
-              <h1>{note.data.title}</h1>
-              <p class="text-sm text-fg-muted">{note.data.summary}</p>
-              <div class="mt-4">
-                <a href={`/notes/${note.slug}`} data-astro-prefetch>
-                  Read more <span class="sr-only">about {note.data.title}</span>
-                </a>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
+    <section class="mt-8">
+      <h1 class="text-sm italic text-fg-muted">Recent projects</h1>
+      <div class="mt-6">
+        <ul>
+          {
+            allProjects.map(project => (
+              <li>
+                <h1>{project.data.title}</h1>
+                <p class="text-sm text-fg-muted">{project.data.summary}</p>
+                <div class="mt-4 flex gap-2 text-sm text-fg-muted">
+                  <a
+                    href={`${project.data.links.source}`}
+                    target="_blank"
+                    rel="norefereer noopener"
+                  >
+                    source
+                  </a>
+                  {project.data.links.website ? (
+                    <a
+                      href={`${project.data.links.website}`}
+                      target="_blank"
+                      rel="norefereer noopener"
+                    >
+                      website
+                    </a>
+                  ) : null}
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="mt-16">
+      <h1 class="text-sm italic text-fg-muted">Personal notes</h1>
+      <div class="mt-6">
+        <ul>
+          {
+            allNotes.map(note => (
+              <li>
+                <h1>{note.data.title}</h1>
+                <p class="text-sm text-fg-muted">{note.data.summary}</p>
+                <div class="mt-4">
+                  <a href={`/notes/${note.slug}`} data-astro-prefetch>
+                    Read more{' '}
+                    <span class="sr-only">about {note.data.title}</span>
+                  </a>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <div class="h-16"></div>
+  </div>
 </Layout>

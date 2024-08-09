@@ -1,0 +1,15 @@
+title: Personal Website
+date: 2024-08-05
+summary: >-
+  Personal website created with Astro and deployed on Cloudflare pages, designed
+  to showcase my projects and personal notes.
+links:
+  source: https://github.com/roblesdotdev/www.roblesar#readme
+  website: https://roblesar.pages.dev
+tags:
+  - astro
+  - typescript
+  - tailwindcss
+  - mdx
+  - yaml
+  - cloudflare
