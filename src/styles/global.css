@@ -3,147 +3,147 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --min-width: 320px;
+  :root {
+    --min-width: 320px;
 
-        --canvas: 240 6% 7%;
-        --panel: 240 4% 10%;
-        --accent: 225 49% 32%;
-        --fg-default: 220 9% 94%;
-        --fg-muted: 213 6% 72%;
-        --fg-accent: 228 100% 81%;
-        --fg-error: 359 100% 78%;
-        --border: 206 6% 25%;
+    --canvas: 240 6% 7%;
+    --panel: 240 4% 10%;
+    --accent: 225 49% 32%;
+    --fg-default: 220 9% 94%;
+    --fg-muted: 213 6% 72%;
+    --fg-accent: 228 100% 81%;
+    --fg-error: 359 100% 78%;
+    --border: 206 6% 25%;
 
-        --font-family: Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans",
-            source-sans-pro, sans-serif;
-    }
+    --font-family: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans',
+      source-sans-pro, sans-serif;
+  }
 
-    * {
-        @apply border-border;
-    }
+  * {
+    @apply border-border;
+  }
 
-    html {
-        color-scheme: dark;
-    }
+  html {
+    color-scheme: dark;
+  }
 
-    body {
-        @apply min-h-screen min-w-[var(--min-width)] overflow-x-hidden bg-canvas text-fg antialiased;
-    }
+  body {
+    @apply min-h-screen min-w-[var(--min-width)] overflow-x-hidden bg-canvas text-fg antialiased;
+  }
 
-    ::selection {
-        @apply bg-accent text-fg;
-    }
+  ::selection {
+    @apply bg-accent text-fg;
+  }
 }
 
 .prose {
-    /*****************************************************************************/
-    /* general text styles */
+  /*****************************************************************************/
+  /* general text styles */
 
-    & p {
-        @apply mb-4 mt-0 text-sm xs:text-base;
-    }
+  & p {
+    @apply mb-4 mt-0 text-sm xs:text-base;
+  }
 
-    & p > strong {
-        @apply font-medium text-fg;
-    }
+  & p > strong {
+    @apply font-medium text-fg;
+  }
 
-    & p > em {
-        @apply font-light italic;
-    }
+  & p > em {
+    @apply font-light italic;
+  }
 
-    /*****************************************************************************/
-    /* lists */
+  /*****************************************************************************/
+  /* lists */
 
-    & ol,
-    & ul {
-        @apply py-2 pl-4 text-sm xs:text-base;
-    }
+  & ol,
+  & ul {
+    @apply py-2 pl-4 text-sm xs:text-base;
+  }
 
-    /*****************************************************************************/
-    /* links */
+  /*****************************************************************************/
+  /* links */
 
-    & a {
-        @apply no-underline outline-none transition-all hover:underline;
-    }
+  & a {
+    @apply no-underline outline-none transition-all hover:underline;
+  }
 
-    /*****************************************************************************/
-    /* headings */
-    & h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        @apply my-0 font-medium;
-    }
+  /*****************************************************************************/
+  /* headings */
+  & h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply my-0 font-medium;
+  }
 
-    & h1,
-    h2 {
-        @apply mb-6 mt-12 text-2xl;
-    }
+  & h1,
+  h2 {
+    @apply mb-6 mt-12 text-2xl;
+  }
 
-    & h2,
-    h3 {
-        @apply tracking-tight;
-    }
+  & h2,
+  h3 {
+    @apply tracking-tight;
+  }
 
-    & h3 {
-        @apply mb-6 mt-8 text-xl;
-    }
+  & h3 {
+    @apply mb-6 mt-8 text-xl;
+  }
 
-    & h4,
-    h5,
-    h6 {
-        @apply text-lg;
-    }
+  & h4,
+  h5,
+  h6 {
+    @apply text-lg;
+  }
 
-    /*****************************************************************************/
-    /* pre / code */
-    & code {
-        @apply rounded-lg px-1 py-0.5;
-    }
+  /*****************************************************************************/
+  /* pre / code */
+  & code {
+    @apply rounded-lg px-1 py-0.5;
+  }
 
-    & pre {
-        @apply border border-border/20 p-4;
-    }
+  & pre {
+    @apply border border-border/20 p-4;
+  }
 
-    & pre code {
-        @apply p-0;
-        border: initial;
-        line-height: 1.5;
-    }
+  & pre code {
+    @apply p-0;
+    border: initial;
+    line-height: 1.5;
+  }
 
-    & code span {
-        @apply font-medium;
-    }
+  & code span {
+    @apply font-medium;
+  }
 
-    & strong {
-        @apply font-medium;
-    }
+  & strong {
+    @apply font-medium;
+  }
 
-    /*****************************************************************************/
-    /* details / summary */
-    & details {
-        @apply mb-4 mt-0 block;
-    }
+  /*****************************************************************************/
+  /* details / summary */
+  & details {
+    @apply mb-4 mt-0 block;
+  }
 
-    & summary {
-        cursor: pointer;
-        display: list-item;
-    }
+  & summary {
+    cursor: pointer;
+    display: list-item;
+  }
 
-    & details[open] summary {
-        @apply mb-2;
-    }
+  & details[open] summary {
+    @apply mb-2;
+  }
 
-    & > :first-child {
-        /* Override removing top margin, causing layout shift */
-        margin-top: 2.5em !important;
-        margin-bottom: 1.5rem !important;
-    }
-    pre {
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
-    }
+  & > :first-child {
+    /* Override removing top margin, causing layout shift */
+    margin-top: 2.5em !important;
+    margin-bottom: 1.5rem !important;
+  }
+  pre {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }

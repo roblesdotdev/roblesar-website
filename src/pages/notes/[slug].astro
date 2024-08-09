@@ -1,24 +1,24 @@
 ---
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
- 
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import Layout from '../../layouts/Layout.astro'
+
 interface Props {
-  note: CollectionEntry<'note'>;
+  note: CollectionEntry<'note'>
 }
- 
+
 export async function getStaticPaths() {
-  const notes = await getCollection('notes');
-  return notes.map((note) => ({
+  const notes = await getCollection('notes')
+  return notes.map(note => ({
     params: { slug: note.slug },
     props: { note },
-  }));
+  }))
 }
-const { note } = Astro.props;
-const { Content } = await note.render();
+const { note } = Astro.props
+const { Content } = await note.render()
 ---
 
-<Layout title="Notes | Aldo R. Robles">
+<Layout title={note.data.title}>
   <div>
     <article>
       <h1 class="text-xl">{note.data.title}</h1>

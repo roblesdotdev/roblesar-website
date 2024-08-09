@@ -1,7 +1,7 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, z } from 'astro:content'
 
 const notesCollection = defineCollection({
-  type: "content",
+  type: 'content',
   schema: () =>
     // using zod to define type-safe frontmatter of our mdx files
     // astro will generate types definitions for our project so we can use them in templates
@@ -12,9 +12,9 @@ const notesCollection = defineCollection({
       date: z.coerce.date(),
       summary: z.string(),
     }),
-});
+})
 
 // This key should match your collection directory name in "src/content"
 export const collections = {
   note: notesCollection,
-};
+}
