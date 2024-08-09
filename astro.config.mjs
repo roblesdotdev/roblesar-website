@@ -4,6 +4,8 @@ import { defineConfig } from "astro/config";
 
 import tailwind from "@astrojs/tailwind";
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
   output: "static",
@@ -12,9 +14,7 @@ export default defineConfig({
   //     enabled: true
   //   }
   // })
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-  ],
+  integrations: [tailwind({
+    applyBaseStyles: false
+  }), mdx()]
 });

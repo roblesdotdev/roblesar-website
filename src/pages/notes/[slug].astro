@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+ 
+interface Props {
+  note: CollectionEntry<'note'>;
+}
+ 
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  return notes.map((note) => ({
+    params: { slug: note.slug },
+    props: { note },
+  }));
+}
+const { note } = Astro.props;
+const { Content } = await note.render();
+---
+
+<Layout title="Notes | Aldo R. Robles">
+  <div>
+    <article>
+      <h1 class="text-xl">{note.data.title}</h1>
+      <div class="mt-8">
+        <Content />
+      </div>
+    </article>
+  </div>
+</Layout>
