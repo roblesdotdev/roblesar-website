@@ -55,7 +55,7 @@ const allProjects = await getCollection('projects')
                 <h1>{note.data.title}</h1>
                 <p class="text-sm text-fg-muted">{note.data.summary}</p>
                 <div class="mt-4">
-                  <a href={`/notes/${note.slug}`} data-astro-prefetch>
+                  <a href={`/notes/${note.slug}/`} data-astro-prefetch>
                     Read more{' '}
                     <span class="sr-only">about {note.data.title}</span>
                   </a>
