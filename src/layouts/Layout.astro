@@ -2,19 +2,20 @@
 import "../styles/global.css";
 interface Props {
     title: string;
+    description?: string;
 }
 
-const { title } = Astro.props;
+const {
+    title,
+    description = "Full-stack developer. Typescript, React, Remix, Node and more.",
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta
-            name="description"
-            content="Full-stack developer. Typescript, React, Remix, Node and more."
-        />
+        <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <title>{title}</title>
