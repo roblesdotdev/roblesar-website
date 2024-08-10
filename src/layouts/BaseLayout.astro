@@ -1,0 +1,35 @@
+---
+import BaseHead from '~/components/BaseHead.astro'
+import '../styles/global.css'
+interface Props {
+  title: string
+  description?: string
+}
+
+const {
+  title,
+  description = 'Full-stack developer. Typescript, React, Remix, Node and more.',
+} = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead siteTitle={title} description={description} />
+  </head>
+  <body class="relative antialiased">
+    <header class="w-ful h-[60px]">
+      <nav class="container flex h-[inherit] w-full items-center">
+        <a
+          class="flex size-8 items-center justify-center rounded-md border border-border/50 outline-none ring-border transition-all focus-visible:ring-2"
+          href="/"
+        >
+          <span class="text-xl font-medium">r.</span>
+        </a>
+      </nav>
+    </header>
+    <main class="container pt-8">
+      <slot />
+    </main>
+  </body>
+</html>

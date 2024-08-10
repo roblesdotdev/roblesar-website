@@ -1,0 +1,26 @@
+---
+type Props = {
+  siteTitle: string
+  description?: string
+}
+
+const { siteTitle, description } = Astro.props
+---
+
+<meta charset="utf-8" />
+<meta charset="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>{siteTitle}</title>
+<meta name="description" content={description} />
+
+<!-- Open Graph -->
+<meta name="og:url" content={Astro.url.href} />
+<meta name="og:title" content={siteTitle} />
+<meta name="og:description" content={description} />
+<!-- TODO og image -->
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:creator" content="@roblesdotdev" />
+<meta name="twitter:title" content={siteTitle} />
+<meta name="twitter:description" content={description} />
