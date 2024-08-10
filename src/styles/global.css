@@ -28,7 +28,7 @@
   }
 
   body {
-    @apply min-h-screen min-w-[var(--min-width)] overflow-x-hidden bg-canvas text-fg antialiased;
+    @apply min-h-screen min-w-[var(--min-width)] overflow-x-hidden bg-canvas leading-relaxed text-fg antialiased;
   }
 
   ::selection {
@@ -41,11 +41,11 @@
   /* general text styles */
 
   & p {
-    @apply mb-4 mt-0 text-sm xs:text-base;
+    @apply mb-4 mt-0 text-sm leading-relaxed xs:text-base;
   }
 
   & p > strong {
-    @apply font-medium text-fg;
+    @apply font-medium;
   }
 
   & p > em {
@@ -57,7 +57,7 @@
 
   & ol,
   & ul {
-    @apply py-2 pl-4 text-sm xs:text-base;
+    @apply py-2 pl-4 text-sm leading-relaxed xs:text-base;
   }
 
   /*****************************************************************************/
@@ -75,12 +75,20 @@
   h4,
   h5,
   h6 {
-    @apply my-0 font-medium;
+    @apply my-0 font-normal;
   }
 
   & h1,
   h2 {
-    @apply mb-6 mt-12 text-2xl;
+    @apply mb-6 mt-12;
+  }
+
+  h1 {
+    @apply text-2xl;
+  }
+
+  h2 {
+    @apply text-xl;
   }
 
   & h2,
@@ -89,13 +97,13 @@
   }
 
   & h3 {
-    @apply mb-6 mt-8 text-xl;
+    @apply mb-6 mt-8 text-lg;
   }
 
   & h4,
   h5,
   h6 {
-    @apply text-lg;
+    @apply text-base;
   }
 
   /*****************************************************************************/
