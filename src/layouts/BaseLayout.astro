@@ -1,5 +1,6 @@
 ---
 import BaseHead from '~/components/BaseHead.astro'
+import Header from '~/components/Header.astro'
 import '../styles/global.css'
 interface Props {
   title: string
@@ -20,17 +21,8 @@ const {
     <BaseHead siteTitle={title} description={description} keywords={keywords} />
   </head>
   <body class="relative antialiased">
-    <header class="w-ful h-[60px]">
-      <nav class="container flex h-[inherit] w-full items-center">
-        <a
-          class="flex size-8 items-center justify-center rounded-md border border-border/50 outline-none ring-border transition-all focus-visible:ring-2"
-          href="/"
-        >
-          <span class="text-xl font-medium">r.</span>
-        </a>
-      </nav>
-    </header>
-    <main class="container pt-8">
+    <Header />
+    <main class="container pb-16 pt-10">
       <slot />
     </main>
   </body>
