@@ -1,5 +1,5 @@
 ---
-import BaseHead from '~/components/BaseHead.astro'
+import CommonHead from '~/components/CommonHead.astro'
 import Header from '~/components/Header.astro'
 import '../styles/global.css'
 interface Props {
@@ -18,7 +18,11 @@ const {
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead siteTitle={title} description={description} keywords={keywords} />
+    <CommonHead
+      siteTitle={title}
+      description={description}
+      keywords={keywords}
+    />
   </head>
   <body class="relative antialiased">
     <Header />
