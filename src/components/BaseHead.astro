@@ -2,16 +2,18 @@
 type Props = {
   siteTitle: string
   description?: string
+  keywords?: string
 }
 
-const { siteTitle, description } = Astro.props
+const { siteTitle, description, keywords = '' } = Astro.props
 ---
 
 <meta charset="utf-8" />
-<meta charset="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <title>{siteTitle}</title>
 <meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
 
 <!-- Open Graph -->
 <meta name="og:url" content={Astro.url.href} />

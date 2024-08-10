@@ -19,7 +19,7 @@ const { note } = Astro.props
 const { Content } = await note.render()
 ---
 
-<Layout title={note.data.title}>
+<Layout title={note.data.title} keywords={note.data.tags.join(',')}>
   <div>
     <article>
       <h1 class="text-xl">{note.data.title}</h1>

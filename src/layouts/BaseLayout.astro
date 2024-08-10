@@ -4,18 +4,20 @@ import '../styles/global.css'
 interface Props {
   title: string
   description?: string
+  keywords?: string
 }
 
 const {
   title,
   description = 'Full-stack developer. Typescript, React, Remix, Node and more.',
+  keywords = '',
 } = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead siteTitle={title} description={description} />
+    <BaseHead siteTitle={title} description={description} keywords={keywords} />
   </head>
   <body class="relative antialiased">
     <header class="w-ful h-[60px]">
