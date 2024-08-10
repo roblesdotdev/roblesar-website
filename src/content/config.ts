@@ -11,6 +11,7 @@ const notesCollection = defineCollection({
       tags: z.array(z.string()),
       date: z.coerce.date(),
       summary: z.string(),
+      draft: z.boolean().optional().default(false),
     }),
 })
 

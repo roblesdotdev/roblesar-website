@@ -1,14 +1,15 @@
 ---
-import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
-import Layout from '../../layouts/Layout.astro'
+import Layout from '~/layouts/Layout.astro'
+import { getNotes } from '~/utils/notes'
 
-interface Props {
-  note: CollectionEntry<'note'>
+type Props = {
+  note: CollectionEntry<'notes'>
 }
 
 export async function getStaticPaths() {
-  const notes = await getCollection('notes')
+  const notes = await getNotes()
+
   return notes.map(note => ({
     params: { slug: note.slug },
     props: { note },
