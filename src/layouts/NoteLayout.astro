@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import FormattedDate from '~/components/FormattedDate.astro'
+import BaseLayout from '~/layouts/BaseLayout.astro'
+
+type Props = {
+  data: CollectionEntry<'notes'>['data']
+}
+
+const { data } = Astro.props
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.summary}
+  keywords={data.tags.join(',')}
+>
+  <h1 class="text-xl font-medium">{data.title}</h1>
+  <FormattedDate date={data.date} />
+  <div class="prose !max-w-none">
+    <slot />
+  </div>
+</BaseLayout>

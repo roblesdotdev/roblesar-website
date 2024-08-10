@@ -1,10 +1,9 @@
 import { defineConfig } from 'astro/config'
-
 // import cloudflare from "@astrojs/cloudflare";
-
 import tailwind from '@astrojs/tailwind'
-
 import mdx from '@astrojs/mdx'
+import rehypeExternalLinks from 'rehype-external-links'
+import rehypeSlug from 'rehype-slug'
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,6 +22,22 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    mdx(),
+    mdx({
+      syntaxHighlight: 'shiki',
+      shikiConfig: {
+        theme: 'tokyo-night',
+        wrap: true,
+      },
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypeExternalLinks,
+          { target: '_blank', rel: ['noopener', 'noreferrer'] },
+        ],
+      ],
+    }),
   ],
+  server: {
+    port: 5173,
+  },
 })

@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import Layout from '~/layouts/BaseLayout.astro'
+import NoteLayout from '~/layouts/NoteLayout.astro'
 import { getNotes } from '~/utils/notes'
 
 type Props = {
@@ -19,13 +19,6 @@ const { note } = Astro.props
 const { Content } = await note.render()
 ---
 
-<Layout title={note.data.title} keywords={note.data.tags.join(',')}>
-  <div>
-    <article>
-      <h1 class="text-xl">{note.data.title}</h1>
-      <div class="mt-8">
-        <Content />
-      </div>
-    </article>
-  </div>
-</Layout>
+<NoteLayout data={note.data}>
+  <Content />
+</NoteLayout>
