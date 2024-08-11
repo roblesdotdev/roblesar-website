@@ -29,7 +29,7 @@
   }
 
   body {
-    @apply min-h-screen min-w-[var(--min-width)] overflow-x-hidden bg-canvas leading-relaxed text-fg antialiased;
+    @apply min-h-screen min-w-[var(--min-width)] overflow-x-hidden bg-canvas text-fg antialiased;
   }
 
   ::selection {
@@ -43,7 +43,7 @@
   /* general text styles */
 
   & p {
-    @apply mb-4 mt-0 text-sm leading-loose xs:text-base;
+    @apply mb-4 mt-0 text-sm leading-normal xs:text-base xs:leading-relaxed;
   }
 
   & p > strong {
