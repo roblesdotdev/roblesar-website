@@ -10,8 +10,8 @@ const notes = await getNotes()
   title="Personal Notes"
   description="Personal notes by Aldo R. Robles"
 >
-  <h1>Personal notes</h1>
-  <div class="py-8">
+  <h1 class="text-lg">Personal notes</h1>
+  <div class="mt-6">
     <ul class="flex flex-col gap-6">
       {
         notes.map(({ data, slug }) => (

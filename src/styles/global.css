@@ -85,12 +85,9 @@
     @apply mb-6 mt-12;
   }
 
-  h1 {
-    @apply text-2xl;
-  }
-
+  h1,
   h2 {
-    @apply text-xl;
+    @apply text-lg;
   }
 
   & h2,
@@ -99,13 +96,13 @@
   }
 
   & h3 {
-    @apply mb-6 mt-8 text-lg;
+    @apply mb-6 mt-8 text-base;
   }
 
   & h4,
   h5,
   h6 {
-    @apply text-base;
+    @apply text-sm;
   }
 
   /*****************************************************************************/
@@ -149,8 +146,7 @@
 
   & > :first-child {
     /* Override removing top margin, causing layout shift */
-    margin-top: 2.5em !important;
-    margin-bottom: 1.5rem !important;
+    @apply mb-6 mt-8 !important;
   }
   pre {
     -ms-overflow-style: none; /* IE and Edge */
