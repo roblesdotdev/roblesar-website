@@ -20,7 +20,7 @@
   }
 
   * {
-    @apply border-border;
+    @apply border-border outline-none focus-visible:ring focus-visible:ring-border;
   }
 
   html {
