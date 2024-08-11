@@ -3,7 +3,7 @@ date: 2024-08-05
 summary: >-
   Personal website created with Astro and deployed on Cloudflare pages.
 links:
-  source: https://github.com/roblesdotdev/www.roblesar#readme
+  source: https://github.com/roblesdotdev/roblesar-website#readme
   website: https://roblesar.pages.dev
 tags:
   - astro
