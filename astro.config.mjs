@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config'
+import sitemap from '@astrojs/sitemap'
 // import cloudflare from "@astrojs/cloudflare";
 import tailwind from '@astrojs/tailwind'
 import mdx from '@astrojs/mdx'
@@ -8,6 +9,7 @@ import rehypeSlug from 'rehype-slug'
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
+  site: 'https://roblesar.pages.dev/',
   build: {
     inlineStylesheets: 'always',
   },
@@ -36,6 +38,7 @@ export default defineConfig({
         ],
       ],
     }),
+    sitemap(),
   ],
   server: {
     port: 5173,
