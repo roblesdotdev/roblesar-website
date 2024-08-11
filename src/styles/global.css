@@ -37,12 +37,13 @@
   }
 }
 
-.prose {
+.prose,
+.prose-mdx {
   /*****************************************************************************/
   /* general text styles */
 
   & p {
-    @apply mb-4 mt-0 text-sm leading-relaxed xs:text-base;
+    @apply mb-4 mt-0 text-sm leading-loose xs:text-base;
   }
 
   & p > strong {

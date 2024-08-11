@@ -24,10 +24,17 @@ const {
       keywords={keywords}
     />
   </head>
-  <body class="relative antialiased">
+  <body class="relative flex min-h-screen flex-col antialiased">
     <Header />
-    <main class="container pb-16 pt-10">
+    <main class="container flex-1 pb-16 pt-10">
       <slot />
     </main>
+    <footer class="py-6">
+      <div class="container">
+        <p class="text-sm text-fg-muted xs:text-base">
+          &copy; Aldor R. Robles - 2024
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
