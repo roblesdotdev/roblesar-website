@@ -11,7 +11,7 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, '')
 
 <a
   href={href}
-  class={cn(isActive ? 'text-fg-accent' : '', className)}
+  class={cn(isActive ? 'text-fg-accent' : 'text-fg-muted', className)}
   rel="noopener noreferrer"
   {...props}
 >
