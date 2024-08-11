@@ -3,6 +3,7 @@ import Layout from '~/layouts/BaseLayout.astro'
 import Divider from '~/components/Divider.astro'
 import ProjectsSection from '~/sections/ProjectsSection.astro'
 import NotesSection from '~/sections/NotesSection.astro'
+import SocialSection from '~/sections/SocialSection.astro'
 ---
 
 <Layout title="Aldo R. Robles">
@@ -23,39 +24,15 @@ import NotesSection from '~/sections/NotesSection.astro'
         >.
       </p>
 
-      <div class="mt-6 flex items-center gap-4 text-sm text-fg-muted">
-        <a
-          href="https://x.com/roblesdotdev"
-          class="transition-all hover:text-fg-accent"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Twitter(X)
-        </a>
-        <a
-          href="https://github.com/roblesdotdev"
-          class="transition-all hover:text-fg-accent"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Github
-        </a>
-        <a
-          href="https://linkedin.com/in/robles-ra"
-          class="transition-all hover:text-fg-accent"
-          rel="noreferrer noopener"
-        >
-          Linkedin
-        </a>
-      </div>
+      <SocialSection />
+
+      <div class="h-16"></div>
+
+      <ProjectsSection />
+
+      <Divider />
+
+      <NotesSection />
     </div>
-
-    <div class="h-16"></div>
-
-    <ProjectsSection />
-
-    <Divider />
-
-    <NotesSection />
   </div>
 </Layout>

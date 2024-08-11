@@ -1,6 +1,7 @@
 ---
 import CommonHead from '~/components/CommonHead.astro'
 import Header from '~/components/Header.astro'
+import Footer from '~/components/Footer.astro'
 import '../styles/global.css'
 interface Props {
   title: string
@@ -29,12 +30,7 @@ const {
     <main class="container flex-1 pb-16 pt-10">
       <slot />
     </main>
-    <footer class="py-6">
-      <div class="container">
-        <p class="text-sm text-fg-muted xs:text-base">
-          &copy; Aldor R. Robles - 2024
-        </p>
-      </div>
-    </footer>
+
+    <Footer />
   </body>
 </html>
