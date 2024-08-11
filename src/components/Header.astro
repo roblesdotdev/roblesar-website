@@ -1,10 +1,40 @@
+---
+const pathname = new URL(Astro.request.url).pathname
+const currentPath = pathname.slice(1)
+
+const navLinks = [
+  { label: 'About', href: '/about' },
+  { label: 'Notes', href: '/notes' },
+  { label: 'Contact', href: '/contact' },
+]
+---
+
 <header class="w-ful h-[60px]">
-  <nav class="container flex h-[inherit] w-full items-center">
+  <nav class="container flex h-[inherit] w-full items-center justify-between">
     <a
       class="flex size-8 items-center justify-center rounded-md border border-border/50 outline-none ring-border transition-all focus-visible:ring-2"
       href="/"
     >
       <span class="text-xl font-medium">r.</span>
     </a>
+
+    <ul id="links" class="flex items-center gap-1 text-sm xs:text-base">
+      {
+        navLinks.map(link => (
+          <li
+            class:list={[
+              'pl-2 [&:not(:last-child)]:pr-2',
+              [
+                currentPath === link.label.toLowerCase()
+                  ? 'text-fg-accent underline'
+                  : '',
+              ],
+            ]}
+          >
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))
+      }
+    </ul>
   </nav>
 </header>
