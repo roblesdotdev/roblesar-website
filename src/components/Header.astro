@@ -1,11 +1,10 @@
 ---
-const pathname = new URL(Astro.request.url).pathname
-const currentPath = pathname.slice(1)
+import Link from '~/components/ui/HeaderLink.astro'
 
 const navLinks = [
-  { label: 'About', href: '/about' },
-  { label: 'Notes', href: '/notes' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'About', href: '/about/' },
+  { label: 'Notes', href: '/notes/' },
+  { label: 'Contact', href: '/contact/' },
 ]
 ---
 
@@ -21,17 +20,8 @@ const navLinks = [
     <ul id="links" class="flex items-center gap-1 text-sm xs:text-base">
       {
         navLinks.map(link => (
-          <li
-            class:list={[
-              'pl-2 [&:not(:last-child)]:pr-2',
-              [
-                currentPath === link.label.toLowerCase()
-                  ? 'text-fg-accent underline'
-                  : '',
-              ],
-            ]}
-          >
-            <a href={link.href}>{link.label}</a>
+          <li class="pl-2 [&:not(:last-child)]:pr-2">
+            <Link href={link.href}>{link.label}</Link>
           </li>
         ))
       }
