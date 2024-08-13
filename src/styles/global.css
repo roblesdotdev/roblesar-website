@@ -16,9 +16,6 @@
     --fg-accent: 229 98% 81%;
     --fg-error: 359 100% 78%;
     --border: 206 6% 25%;
-
-    --font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro,
-      sans-serif;
   }
 
   * {

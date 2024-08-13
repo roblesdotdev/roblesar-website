@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from 'astro:transitions'
+import { AstroFont } from 'astro-font'
 
 type Props = {
   siteTitle: string
@@ -20,6 +21,24 @@ const ogImage = new URL(image ? image : '/og-image.jpg', Astro.url).href
 <title>{siteTitle}</title>
 <meta name="description" content={description} />
 <meta name="keywords" content={keywords} />
+
+<!-- font -->
+<AstroFont
+  config={[
+    {
+      src: [],
+      name: 'Quicksand',
+      // Google Fonts URL
+      googleFontsURL:
+        'https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap',
+      preload: true,
+      display: 'swap',
+      selector: 'body',
+      fallback: 'monospace',
+      cssVariable: 'font-family',
+    },
+  ]}
+/>
 
 <!-- Open Graph -->
 <meta name="og:url" content={Astro.url.href} />
