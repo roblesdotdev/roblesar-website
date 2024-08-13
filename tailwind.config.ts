@@ -9,7 +9,7 @@ export default {
       center: true,
       padding: '1.25rem',
       screens: {
-        lg: '80ch',
+        lg: '75ch',
       },
     },
     extend: {
@@ -31,8 +31,8 @@ export default {
         },
         border: 'hsl(var(--border))',
       },
-       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-       typography: (theme: any) => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      typography: (theme: any) => ({
         DEFAULT: {
           css: {
             '--tw-prose-headings': theme('colors.fg.DEFAULT'),

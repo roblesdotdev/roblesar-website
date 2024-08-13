@@ -12,7 +12,9 @@ const notes = await getNotes()
       notes.map(({ data, slug }) => (
         <li class="flex flex-col gap-1">
           <FormattedDate date={data.date} />
-          <h1 class="text-base leading-tight xs:text-lg">{data.title}</h1>
+          <a href={`/notes/${slug}/`}>
+            <h1 class="text-base leading-tight">{data.title}</h1>
+          </a>
           <p class="text-sm leading-tight text-fg-muted xs:text-base">
             {data.summary}
           </p>
