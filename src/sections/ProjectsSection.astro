@@ -7,7 +7,7 @@ const projects = await getProjects()
 
 <section>
   <h1 class="text-sm italic text-fg-muted xs:text-base">Recent projects</h1>
-  <ul class="mt-8">
+  <ul class="mt-8 flex flex-col gap-6">
     {
       projects.map(({ data }) => (
         <li class="flex flex-col gap-1">
@@ -22,7 +22,7 @@ const projects = await getProjects()
               </li>
             ))}
           </ul>
-          <div class="mt-3 flex gap-4 text-sm text-fg-muted xs:text-base">
+          <div class="flex gap-4 pt-2 text-sm text-fg-muted xs:text-base">
             <ExternalLink href={data.links.source} label="source" />
             {data.links.website ? (
               <ExternalLink href={data.links.website} label="website" />
