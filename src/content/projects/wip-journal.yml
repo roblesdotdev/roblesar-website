@@ -1,0 +1,11 @@
+title: Wip Journal
+date: 2024-08-17
+summary: >-
+  Simple app for tracking your daily progress on ongoing projects and tasks.
+links:
+  source: https://github.com/roblesdotdev/wip-journal#readme
+tags:
+  - remix
+  - typescript
+  - tailwindcss
+  - prisma

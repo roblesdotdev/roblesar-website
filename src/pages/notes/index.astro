@@ -11,7 +11,11 @@ const notes = await getNotes()
   description="Personal notes by Aldo R. Robles"
 >
   <h1 class="text-lg">Personal notes</h1>
-  <div class="mt-6">
+  <p class="mt-2 text-sm text-fg-muted xs:text-base">
+    Insights, thoughts, and lessons learned from my journey in tech. Dive deeper
+    into my experiences.
+  </p>
+  <div class="mt-10">
     <ul class="flex flex-col gap-8">
       {
         notes.map(({ data, slug }) => (

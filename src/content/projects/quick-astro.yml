@@ -1,8 +1,7 @@
 title: Quick Astro
 date: 2024-08-10
 summary: >-
-  A minimalist template that comes preconfigured with tools commonly used in web
-  development.
+  A minimalist template that comes with tools commonly used in web development.
 links:
   source: https://github.com/roblesdotdev/quick-astro#readme
   website: https://quick-astro.pages.dev

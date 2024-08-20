@@ -11,7 +11,16 @@ const projects = await getProjects()
   description="Personal projects by Aldo R. Robles"
 >
   <h1 class="text-lg">Personal projects</h1>
-  <div class="mt-6">
+  <p class="mt-2 text-sm text-fg-muted xs:text-base">
+    A collection of my individual work, where I explore new technologies and
+    bring ideas to life. Check out more on my <a
+      target="_blank"
+      rel="noreferrer noopener"
+      class="text-fg-accent hover:underline"
+      href="https://github.com/roblesdotdev">github</a
+    >.
+  </p>
+  <div class="mt-10">
     <ul class="flex flex-col gap-8">
       {
         projects.map(({ data }) => (
