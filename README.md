@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/og-image.jpg" alt="Open graph image" />
+  <img src="public/og-image.png" alt="Open graph image" />
 </div>
 
 ---
