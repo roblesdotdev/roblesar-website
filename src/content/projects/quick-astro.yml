@@ -4,7 +4,7 @@ summary: >-
   A minimalist template that comes with tools commonly used in web development.
 links:
   source: https://github.com/roblesdotdev/quick-astro#readme
-  website: https://quick-astro.pages.dev
+  website: https://astro.build/themes/details/quick-astro
 tags:
   - astro
   - typescript

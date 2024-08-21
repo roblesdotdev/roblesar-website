@@ -9,7 +9,7 @@ import rehypeSlug from 'rehype-slug'
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: 'https://roblesar.pages.dev/',
+  site: 'https://roblesar.cc/',
   build: {
     inlineStylesheets: 'always',
   },
