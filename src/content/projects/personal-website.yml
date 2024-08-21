@@ -4,7 +4,7 @@ summary: >-
   Personal website created with Astro and deployed on Cloudflare pages.
 links:
   source: https://github.com/roblesdotdev/roblesar-website#readme
-  website: https://roblesar.pages.dev
+  website: https://site.roblesar.cc
 tags:
   - astro
   - typescript
