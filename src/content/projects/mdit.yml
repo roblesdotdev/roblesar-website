@@ -1,0 +1,12 @@
+title: Mdit
+date: 2024-08-17
+summary: >-
+  A simple application for real-time Markdown document previewing.
+links:
+  website: https://mdit.pages.dev
+  source: https://github.com/roblesdotdev/mdit
+tags:
+  - react
+  - typescript
+  - tailwindcss
+  - markdown
