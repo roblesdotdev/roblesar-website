@@ -6,7 +6,12 @@ const notes = await getNotes()
 ---
 
 <section>
-  <h1 class="text-sm italic text-fg-muted xs:text-base">Personal notes</h1>
+  <div class="flex items-center justify-between">
+    <h1 class="text-sm italic text-fg-muted xs:text-base">Personal notes</h1>
+    <a href="/notes/" class="text-sm text-fg-accent hover:underline">
+      View All
+    </a>
+  </div>
   <ul class="mt-8 flex flex-col gap-8">
     {
       notes.map(({ data, slug }) => (

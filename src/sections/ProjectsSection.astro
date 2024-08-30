@@ -2,11 +2,16 @@
 import ExternalLink from '~/components/ui/ExternalLink.astro'
 import { getProjects } from '~/utils/projects'
 
-const projects = await getProjects()
+const projects = await getProjects(3)
 ---
 
 <section>
-  <h1 class="text-sm italic text-fg-muted xs:text-base">Recent projects</h1>
+  <div class="flex items-center justify-between">
+    <h1 class="text-sm italic text-fg-muted xs:text-base">Recent projects</h1>
+    <a href="/projects/" class="text-sm text-fg-accent hover:underline"
+      >View all</a
+    >
+  </div>
   <ul class="mt-8 flex flex-col gap-6">
     {
       projects.map(({ data }) => (

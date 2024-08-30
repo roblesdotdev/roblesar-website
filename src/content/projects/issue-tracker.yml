@@ -1,0 +1,12 @@
+title: Issue Tracker
+date: 2024-08-29
+summary: >-
+  A simple application for real-time Markdown document previewing.
+links:
+  website: https://remixon.vercel.app
+  source: https://github.com/roblesdotdev/remix-on-vercel
+tags:
+  - remix
+  - typescript
+  - tailwindcss
+  - postgres
