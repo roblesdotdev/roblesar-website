@@ -11,7 +11,7 @@ const notes = await getNotes()
   description="Personal notes by Aldo R. Robles"
 >
   <h1 class="text-lg">Personal notes</h1>
-  <p class="mt-2 text-sm text-fg-muted xs:text-base">
+  <p class="text-fg-muted xs:text-base mt-2 text-sm">
     Insights, thoughts, and lessons learned from my journey in tech. Dive deeper
     into my experiences.
   </p>
@@ -22,14 +22,14 @@ const notes = await getNotes()
           <li class="flex flex-col gap-1">
             <FormattedDate date={data.date} />
             <h1 class="text-base leading-tight">{data.title}</h1>
-            <p class="text-sm leading-tight text-fg-muted xs:text-base">
+            <p class="text-fg-muted xs:text-base text-sm leading-tight">
               {data.summary}
             </p>
-            <div class="mt-2 text-sm text-fg-muted xs:text-base">
+            <div class="text-fg-muted xs:text-base mt-2 text-sm">
               <a
                 href={`/notes/${slug}/`}
                 data-astro-prefetch
-                class="inline-flex items-center gap-1 transition-all hover:text-fg-accent"
+                class="hover:text-fg-accent inline-flex items-center gap-1 transition-all"
               >
                 Read more <span class="sr-only">about {data.title}</span>
                 <svg

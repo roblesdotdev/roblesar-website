@@ -7,8 +7,8 @@ const projects = await getProjects(3)
 
 <section>
   <div class="flex items-center justify-between">
-    <h1 class="text-sm italic text-fg-muted xs:text-base">Recent projects</h1>
-    <a href="/projects/" class="text-sm text-fg-accent hover:underline"
+    <h1 class="text-fg-muted xs:text-base text-sm italic">Recent projects</h1>
+    <a href="/projects/" class="text-fg-accent text-sm hover:underline"
       >View all</a
     >
   </div>
@@ -19,15 +19,15 @@ const projects = await getProjects(3)
           <a href={data.links.source} target="_blank" rel="noreferrer noopener">
             <h1 class="text-base">{data.title}</h1>
           </a>
-          <p class="text-sm text-fg-muted xs:text-base">{data.summary}</p>
+          <p class="text-fg-muted xs:text-base text-sm">{data.summary}</p>
           <ul class="flex flex-wrap items-center gap-2 py-2">
             {data.tags.map(tag => (
-              <li class="inline-flex cursor-default whitespace-nowrap rounded-md bg-fg/5 px-1.5 py-0.5 text-xs">
+              <li class="bg-fg/5 inline-flex cursor-default whitespace-nowrap rounded-md px-1.5 py-0.5 text-xs">
                 {tag}
               </li>
             ))}
           </ul>
-          <div class="flex gap-4 pt-2 text-sm text-fg-muted xs:text-base">
+          <div class="text-fg-muted xs:text-base flex gap-4 pt-2 text-sm">
             <ExternalLink href={data.links.source} label="source" />
             {data.links.website ? (
               <ExternalLink href={data.links.website} label="website" />

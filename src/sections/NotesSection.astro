@@ -7,8 +7,8 @@ const notes = await getNotes()
 
 <section>
   <div class="flex items-center justify-between">
-    <h1 class="text-sm italic text-fg-muted xs:text-base">Personal notes</h1>
-    <a href="/notes/" class="text-sm text-fg-accent hover:underline">
+    <h1 class="text-fg-muted xs:text-base text-sm italic">Personal notes</h1>
+    <a href="/notes/" class="text-fg-accent text-sm hover:underline">
       View All
     </a>
   </div>
@@ -20,14 +20,14 @@ const notes = await getNotes()
           <a href={`/notes/${slug}/`}>
             <h1 class="text-base leading-tight">{data.title}</h1>
           </a>
-          <p class="text-sm leading-tight text-fg-muted xs:text-base">
+          <p class="text-fg-muted xs:text-base text-sm leading-tight">
             {data.summary}
           </p>
-          <div class="mt-3 text-sm text-fg-muted xs:text-base">
+          <div class="text-fg-muted xs:text-base mt-3 text-sm">
             <a
               href={`/notes/${slug}/`}
               data-astro-prefetch
-              class="inline-flex items-center gap-1 transition-all hover:text-fg-accent"
+              class="hover:text-fg-accent inline-flex items-center gap-1 transition-all"
             >
               Read more <span class="sr-only">about {data.title}</span>
               <svg

@@ -6,7 +6,7 @@ interface Props {
 const { date } = Astro.props
 ---
 
-<time class="text-sm italic text-fg-muted" datetime={date.toISOString()}>
+<time class="text-fg-muted text-sm italic" datetime={date.toISOString()}>
   {
     date.toLocaleDateString('en-us', {
       timeZone: 'UTC',

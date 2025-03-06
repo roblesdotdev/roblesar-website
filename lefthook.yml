@@ -1,0 +1,8 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      run: pnpm run format:write
+      stage_fixed: true
+    check:
+      run: pnpm run check

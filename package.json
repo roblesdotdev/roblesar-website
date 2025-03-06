@@ -8,14 +8,13 @@
     "build": "astro check && astro build",
     "preview": "astro build && astro preview",
     "astro": "astro",
-    "deploy": "astro build && wrangler pages deploy",
     "prettier": "prettier \"**/*.+(js|jsx|astro|css|ts|tsx|cjs|mjs)\"",
     "format": "pnpm prettier --list-different",
     "format:write": "pnpm prettier --write",
-    "typecheck": "tsc -b"
+    "check": "astro check",
+    "prepare": "lefthook install"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "^4.1.0",
     "@astrojs/sitemap": "^3.2.1",
     "astro": "^5.4.2",
@@ -23,17 +22,29 @@
     "clsx": "^2.1.1",
     "rehype-external-links": "^3.0.0",
     "rehype-slug": "^6.0.0",
-    "tailwind-merge": "^2.4.0",
-    "typescript": "^5.5.4"
+    "tailwind-merge": "^2.4.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.4",
     "@cloudflare/workers-types": "^4.20240806.0",
     "@tailwindcss/typography": "^0.5.14",
     "@tailwindcss/vite": "^4.0.11",
+    "lefthook": "^1.11.2",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.6",
     "tailwindcss": "^4.0.11",
+    "typescript": "^5.5.4",
     "wrangler": "^3.70.0"
+  },
+  "packageManager": "pnpm@10.5.2",
+  "engines": {
+    "node": "22",
+    "pnpm": ">=10.5.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "lefthook"
+    ]
   }
 }
