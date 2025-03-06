@@ -1,39 +1,54 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
 
-@layer base {
-  :root {
-    --min-width: 320px;
+:root {
+  --min-width: 320px;
+  --max-width: 624px;
 
-    --canvas: 240 6% 7%;
-    --panel: 240 4% 10%;
-    --accent: 225 49% 32%;
-    --fg-default: 220 9% 94%;
-    --fg-muted: 213 6% 72%;
-    --fg-muted: 235 8% 72%;
-    --fg-accent: 228 100% 81%;
-    --fg-accent: 229 98% 81%;
-    --fg-error: 359 100% 78%;
-    --border: 206 6% 25%;
-  }
+  --canvas: hsl(240, 6%, 7%);
+  --panel: hsl(240, 4%, 10%);
+  --accent: hsl(225, 49%, 32%);
+  --fg-default: hsl(220, 9%, 94%);
+  --fg-muted: hsl(213, 6%, 72%);
+  --fg-muted: hsl(235, 8%, 72%);
+  --fg-accent: hsl(228, 100%, 81%);
+  --fg-accent: hsl(229, 98%, 81%);
+  --fg-error: hsl(359, 100%, 78%);
+  --border: hsl(206, 6%, 25%);
+}
 
-  * {
-    @apply border-border outline-none focus-visible:ring focus-visible:ring-border;
-  }
+@theme {
+  --color-canvas: var(--canvas);
+  --color-panel: var(--panel);
+  --color-accent: var(--accent);
+  --color-fg: var(--fg-default);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-accent: var(--fg-accent);
+  --color-fg-error: var(--fg-error);
+  --color-border: var(--border);
 
-  html {
-    color-scheme: dark;
-    scrollbar-gutter: stable;
-  }
+  --breakpoint-xs: 375px;
+}
 
-  body {
-    @apply min-h-screen min-w-[var(--min-width)] overflow-x-hidden bg-canvas text-fg antialiased;
-  }
+* {
+  @apply border-border outline-none focus-visible:ring focus-visible:ring-border;
+}
 
-  ::selection {
-    @apply bg-accent text-fg;
-  }
+html {
+  color-scheme: dark;
+  scrollbar-gutter: stable;
+}
+
+body {
+  @apply min-h-screen min-w-[var(--min-width)] overflow-x-hidden bg-canvas text-fg antialiased;
+}
+
+::selection {
+  @apply bg-accent text-fg;
+}
+
+.container {
+  @apply mx-auto w-full max-w-[var(--max-width)];
 }
 
 .prose,
@@ -145,7 +160,7 @@
 
   & > :first-child {
     /* Override removing top margin, causing layout shift */
-    @apply mb-6 mt-8 !important;
+    @apply mb-6 mt-8;
   }
   pre {
     -ms-overflow-style: none; /* IE and Edge */

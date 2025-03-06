@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions'
+import { ClientRouter } from 'astro:transitions'
 import { AstroFont } from 'astro-font'
 
 type Props = {
@@ -57,4 +57,4 @@ const ogImage = new URL(image ? image : '/og-image.png', Astro.url).href
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
-<ViewTransitions />
+<ClientRouter />

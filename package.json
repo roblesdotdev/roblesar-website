@@ -6,10 +6,9 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
-    "preview": "astro build && wrangler pages dev",
+    "preview": "astro build && astro preview",
     "astro": "astro",
     "deploy": "astro build && wrangler pages deploy",
-    "cf-typegen": "wrangler types",
     "prettier": "prettier \"**/*.+(js|jsx|astro|css|ts|tsx|cjs|mjs)\"",
     "format": "pnpm prettier --list-different",
     "format:write": "pnpm prettier --write",
@@ -17,25 +16,24 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/cloudflare": "^11.1.0",
-    "@astrojs/mdx": "^3.1.7",
-    "@astrojs/sitemap": "^3.2.0",
-    "@astrojs/tailwind": "^5.1.1",
-    "astro": "^4.15.12",
+    "@astrojs/mdx": "^4.1.0",
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.4.2",
     "astro-font": "^0.1.81",
     "clsx": "^2.1.1",
     "rehype-external-links": "^3.0.0",
     "rehype-slug": "^6.0.0",
     "tailwind-merge": "^2.4.0",
-    "tailwindcss": "^3.4.9",
     "typescript": "^5.5.4"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240806.0",
     "@tailwindcss/typography": "^0.5.14",
+    "@tailwindcss/vite": "^4.0.11",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.6",
+    "tailwindcss": "^4.0.11",
     "wrangler": "^3.70.0"
   }
 }

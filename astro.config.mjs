@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config'
 import sitemap from '@astrojs/sitemap'
-// import cloudflare from "@astrojs/cloudflare";
-import tailwind from '@astrojs/tailwind'
+import tailwindcss from '@tailwindcss/vite'
 import mdx from '@astrojs/mdx'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
@@ -15,15 +14,10 @@ export default defineConfig({
   },
   compressHTML: true,
   prefetch: true,
-  // adapter: cloudflare({
-  //   platformProxy: {
-  //     enabled: true
-  //   }
-  // })
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
     mdx({
       syntaxHighlight: 'shiki',
       shikiConfig: {
@@ -41,6 +35,6 @@ export default defineConfig({
     sitemap(),
   ],
   server: {
-    port: 5173,
+    port: 3000,
   },
 })
