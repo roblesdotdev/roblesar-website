@@ -48,7 +48,7 @@ body {
 }
 
 .container {
-  @apply mx-auto w-full max-w-[var(--max-width)];
+  @apply mx-auto w-full max-w-[var(--max-width)] px-6;
 }
 
 .prose,
