@@ -16,6 +16,9 @@ export default defineConfig({
   prefetch: true,
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      cssMinify: true,
+    },
   },
   integrations: [
     mdx({
